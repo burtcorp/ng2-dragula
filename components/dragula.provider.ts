@@ -95,12 +95,14 @@ export class DragulaService {
       sourceModel = drake.models[drake.containers.indexOf(source)];
       // console.log('DROP');
       // console.log(sourceModel);
+      let dropElmModel: any
       if (target === source) {
-        sourceModel.splice(dropIndex, 0, sourceModel.splice(dragIndex, 1)[0]);
+        dropElmModel = sourceModel.splice(dragIndex, 1)[0]
+        sourceModel.splice(dropIndex, 0, dropElmModel);
       } else {
         let notCopy = dragElm === dropElm;
         let targetModel = drake.models[drake.containers.indexOf(target)];
-        let dropElmModel = notCopy ? sourceModel[dragIndex] : JSON.parse(JSON.stringify(sourceModel[dragIndex]));
+        dropElmModel = notCopy ? sourceModel[dragIndex] : JSON.parse(JSON.stringify(sourceModel[dragIndex]));
 
         if (notCopy) {
           sourceModel.splice(dragIndex, 1);
@@ -108,7 +110,7 @@ export class DragulaService {
         targetModel.splice(dropIndex, 0, dropElmModel);
         target.removeChild(dropElm); // element must be removed for ngFor to apply correctly
       }
-      this.dropModel.emit([name, dropElm, target, source]);
+      this.dropModel.emit([name, dropElm, target, source, dropElmModel]);
     });
   }
 
