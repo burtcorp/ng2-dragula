@@ -23,14 +23,14 @@ npm-debug.log
 /demo/**/*.js.map
 /demo/**/*.d.ts
 !/demo/custom-typings.d.ts
-/components/**/*.js
-/components/**/*.js.map
-/components/**/*.d.ts
-ng2-dragula.js
-ng2-dragula.d.ts
+# /components/**/*.js
+# /components/**/*.js.map
+# /components/**/*.d.ts
+# ng2-dragula.js
+# ng2-dragula.d.ts
 ng2-dragula.metadata.json
 ng2-dragula.ngfactory.ts
-ng2-dragula.js.map
+# ng2-dragula.js.map
 /logs
 
 # AoT generated files
