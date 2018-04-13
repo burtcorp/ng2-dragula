@@ -1,19 +1,21 @@
-![Logo](https://github.com/bevacqua/dragula/blob/master/resources/logo.png)
+![Logo](https://raw.githubusercontent.com/bevacqua/dragula/master/resources/logo.png)
 
 > Drag and drop so simple it hurts
 
-Official **Angular2** wrapper for [`dragula`](https://github.com/bevacqua/dragula). [![npm version](https://badge.fury.io/js/ng2-dragula.svg)](http://badge.fury.io/js/ng2-dragula)
+Official **Angular2** wrapper for [`dragula`](https://github.com/bevacqua/dragula). [![npm version](https://badge.fury.io/js/ng2-dragula.svg)](http://badge.fury.io/js/ng2-dragula) [![npm downloads](https://img.shields.io/npm/dm/ng2-dragula.svg)](https://npmjs.org/ng2-dragula) [![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
 
-[![Code Climate](https://codeclimate.com/github/valor-software/ng2-dragula/badges/gpa.svg)](https://codeclimate.com/github/valor-software/ng2-dragula)
-[![Join the chat at https://gitter.im/valor-software/ng2-bootstrap](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/valor-software/ng2-bootstrap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
+[![Build Status](https://travis-ci.org/valor-software/ng2-dragula.svg?branch=master)](https://travis-ci.org/valor-software/ng2-dragula)
+[![codecov](https://codecov.io/gh/valor-software/ng2-dragula/branch/master/graph/badge.svg)](https://codecov.io/gh/valor-software/ng2-dragula)
 [![Dependency Status](https://david-dm.org/valor-software/ng2-dragula.svg)](https://david-dm.org/valor-software/ng2-dragula)
-[![devDependency Status](https://david-dm.org/valor-software/ng2-dragula/dev-status.svg)](https://david-dm.org/valor-software/ng2-dragula#info=devDependencies)
-[![Throughput Graph](https://graphs.waffle.io/valor-software/ng2-dragula/throughput.svg)](https://waffle.io/valor-software/ng2-dragula/metrics)
+
+[![NPM](https://nodei.co/npm/ng2-dragula.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/ng2-dragula)
+[![NPM](https://nodei.co/npm-dl/ng2-dragula.png?height=3&months=3)](https://npmjs.org/ng2-dragula)
 
 
 # Demo
 
-![Demo](https://github.com/bevacqua/dragula/blob/master/resources/demo.png)
+![Demo](https://raw.githubusercontent.com/bevacqua/dragula/master/resources/demo.png)
 
 Try out the [demo](http://valor-software.github.io/ng2-dragula/index.html)!
 
@@ -27,7 +29,7 @@ Try out the [demo](http://valor-software.github.io/ng2-dragula/index.html)!
 You can get it on npm.
 
 ```shell
-npm install ng2-dragula dragula --save
+npm install ng2-dragula --save
 ```
 
 # Setup
@@ -75,6 +77,8 @@ export class AppModule {
 class Sample {}
 ```
 
+You'll also need to add Dragula's CSS stylesheet `dragula.min.css` to your application.  You can find this in `node_modules/dragula/dist/dragula.css`.
+
 # Usage
 
 This package isn't very different from `dragula` itself. I'll mark the differences here, but please refer to the documentation for [`dragula`](https://github.com/bevacqua/dragula) if you need to learn more about `dragula` itself.
@@ -94,8 +98,8 @@ There's a `dragula` directive that allows you to group containers together. That
 If your `ngFor` is compiled from array, you may wish to have it synced. For that purpose you need to provide model by setting the `dragulaModel` attribute on the bag element.
 
 ```html
-<ul>
-  <li *ngFor="let item of items" [dragula]='"bag-one"' [dragulaModel]='items'></li>
+<ul [dragula]='"bag-one"' [dragulaModel]='items'>
+  <li *ngFor="let item of items"></li>
 </ul>
 ```
 
@@ -106,7 +110,7 @@ The standard `drop` event is fired before the model is synced. For that purpose 
 If you need to configure the `drake` _(there's only one `drake` per `bag`)_, you can use the `DragulaService`.
 
 ```js
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { DragulaService } from 'ng2-dragula';
 
 class ConfigExample {
   constructor(private dragulaService: DragulaService) {
@@ -115,6 +119,19 @@ class ConfigExample {
     });
   }
 }
+```
+
+You can also set your options by binding an options object to the `dragulaOptions` attribute.
+
+```js
+options: any = {
+  removeOnSpill: true
+}
+```
+
+```html
+<div [dragula]='"bag-one"' [dragulaOptions]="options"></div>
+<div [dragula]='"bag-two"' [dragulaOptions]="options"></div>
 ```
 
 ## Events
@@ -202,6 +219,21 @@ Destroys a `drake` instance named `name`.
 ## Contribution
 
 Please read central `ng2` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach and welcome :)
+
+## Development
+
+Run demo locally:
+1. build lib `npm run build` (`npm run build.watch` to run build in watch mode)
+2. link lib `npm run link`
+3. run demo `npm start`
+
+Publish
+1. ./node_modules/.bin/ngm -p src version patch
+2. ./node_modules/.bin/ngm -p src publish
+
+Update demo (gh-pages)
+1. npm run demo.build (or ./node_modules/.bin/ng build -prod)
+2. npm run demo.deploy
 
 ## Credits
 Crossbrowser testing sponsored by [Browser Stack](https://www.browserstack.com)
